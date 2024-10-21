@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1012111653894",
+    "project_id": "qasim-milk-shop",
+    "storage_bucket": "qasim-milk-shop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012111653894:android:4f73585f38e9f6dd739787",
+        "android_client_info": {
+          "package_name": "com.example.qasim_milk_shop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7gC8-9mSTDSXmWxmSEvXnoB-H2Mrq1Rg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
