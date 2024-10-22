@@ -108,9 +108,8 @@ class _PaymentPageState extends State<PaymentPage> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20.0),
               child: MyButton(
-                  onTap: () => context.go('/delivery_progress_page'),
-                  // onTap: userTappedPay,
-
+                  // onTap: () => context.go('/delivery_progress_page'),
+                  onTap: userTappedPay,
                   title: "Pay Now!"),
             ),
           ],
