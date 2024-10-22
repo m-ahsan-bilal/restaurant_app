@@ -16,7 +16,7 @@ class MySilverAppBar extends StatelessWidget {
       actions: [
         IconButton(
             onPressed: () {
-              context.go('/cart_view');
+              context.go('/cart');
             },
             icon: const Icon(Icons.shopping_cart))
       ],

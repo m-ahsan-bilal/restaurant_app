@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:qasim_milk_shop/firebase_services/auth/auth_gate.dart';
 
-import 'package:qasim_milk_shop/auth/login_or_register.dart';
+import 'package:qasim_milk_shop/firebase_services/auth/login_or_register.dart';
 import 'dart:async';
 
 class SplashScreen extends StatefulWidget {
@@ -39,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen>
       // context.go('home_dash');
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const LoginOrRegister()),
+        MaterialPageRoute(builder: (context) => const AuthGate()),
       );
       // Navigator.of(context).pushReplacementNamed('/home_dash');
     });

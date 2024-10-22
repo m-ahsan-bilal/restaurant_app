@@ -39,7 +39,7 @@ class MyDescriptionBox extends StatelessWidget {
                 style: mySecondaryTextStyle,
               ),
               Text(
-                "\30-40 minutes",
+                "30-40 minutes",
                 style: myPrimaryTextStyle,
               ),
             ],

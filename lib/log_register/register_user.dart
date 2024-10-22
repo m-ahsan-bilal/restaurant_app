@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:qasim_milk_shop/firebase_services/auth/auth_services.dart';
 import 'package:qasim_milk_shop/utils/dialoge.dart';
 import 'package:qasim_milk_shop/utils/my_button.dart';
 import 'package:qasim_milk_shop/utils/my_text_field.dart';
-import 'package:qasim_milk_shop/utils/square_tile.dart';
 
 class RegisterUser extends StatefulWidget {
   const RegisterUser({super.key});
@@ -40,6 +40,54 @@ class _RegisterUserState extends State<RegisterUser> {
     passwordController.dispose();
     confirmPasswordController.dispose();
     super.dispose();
+  }
+
+  Future<void> signUp() async {
+    final _authService = AuthService();
+    // check if passwords matcch create user
+    if (passwordController.text.trim() ==
+        confirmPasswordController.text.trim()) {
+      // try creating user
+      try {
+        await _authService.signUpWithEmailPassword(
+            emailController.text.trim(), passwordController.text.trim());
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: const Text(
+                    "Congratulations!, You are registered..",
+                    style: TextStyle(color: Colors.black87),
+                  ),
+                  titleTextStyle: const TextStyle(fontWeight: FontWeight.bold),
+                  actions: [
+                    TextButton(
+                        onPressed: () => context.go('/login_user'),
+                        child: const Text(
+                          "Login Now!",
+                          style: TextStyle(color: Colors.black87),
+                        ))
+                  ],
+                ));
+        // context.go("/login_user");
+      }
+      // display any errors
+      catch (e) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: Text(e.toString()),
+                ));
+      }
+    }
+
+    // if passwords don't match
+    else {
+      showDialog(
+          context: context,
+          builder: (context) => const AlertDialog(
+                title: Text("Passwords don't match"),
+              ));
+    }
   }
 
   @override
@@ -153,14 +201,7 @@ class _RegisterUserState extends State<RegisterUser> {
 
                     debugPrint(
                         'Email: $email, Password: $password, Confirm Password: $confirmPassword');
-
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return const SuccessDialog(
-                            message: "Validation successful!");
-                      },
-                    );
+                    signUp();
                   }
                 },
                 title: "Sign Up",

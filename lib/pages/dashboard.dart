@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:qasim_milk_shop/models/food.dart';
 import 'package:qasim_milk_shop/models/restaurant.dart';

@@ -1,10 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:qasim_milk_shop/firebase_services/auth/auth_services.dart';
+
 import 'package:qasim_milk_shop/utils/Mydrawertile.dart';
 
 class Mydrawer extends StatelessWidget {
   const Mydrawer({super.key});
+  void logout() {
+    final _authService = AuthService();
+    _authService.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +52,9 @@ class Mydrawer extends StatelessWidget {
             text: "L O G  O U T",
             icon: Icons.logout_outlined,
             onTap: () async {
-              await FirebaseAuth.instance.signOut();
+              Navigator.pop(context);
+              logout;
+              debugPrint("user log out ");
               context.go('/login_user');
             },
           ),

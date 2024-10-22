@@ -4,7 +4,7 @@ import 'package:qasim_milk_shop/models/food.dart';
 class MyFoodTile extends StatelessWidget {
   final Food food;
   final void Function()? onTap;
-  MyFoodTile({super.key, required this.onTap, required this.food});
+  const MyFoodTile({super.key, required this.onTap, required this.food});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class MyFoodTile extends StatelessWidget {
                       food.name,
                     ),
                     Text(
-                      "Rs." + food.price.toString(),
+                      "Rs.${food.price}",
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.primary),
                     ),
