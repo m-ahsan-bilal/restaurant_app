@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:qasim_milk_shop/firebase_services/auth/login_or_register.dart';
-import 'package:qasim_milk_shop/log_register/loginuser.dart';
-import 'package:qasim_milk_shop/pages/dashboard.dart';
+import 'package:food_delivery_app/firebase_services/auth/login_or_register.dart';
+import 'package:food_delivery_app/pages/dashboard.dart';
 
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
@@ -15,9 +14,9 @@ class AuthGate extends StatelessWidget {
         builder: (context, snapshot) {
           // user is logged in
           if (snapshot.hasData) {
-            return HomeDash();
+            return const HomeDash();
           } else {
-            return LoginOrRegister();
+            return const LoginOrRegister();
           }
         },
       ),

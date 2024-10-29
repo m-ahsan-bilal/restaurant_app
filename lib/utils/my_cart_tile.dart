@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:food_delivery_app/models/cart_item.dart';
+import 'package:food_delivery_app/models/restaurant.dart';
+import 'package:food_delivery_app/utils/my_quantity.dart';
 import 'package:provider/provider.dart';
-import 'package:qasim_milk_shop/models/cart_item.dart';
-import 'package:qasim_milk_shop/models/restaurant.dart';
-import 'package:qasim_milk_shop/utils/my_quantity.dart';
 
 class MyCartTile extends StatelessWidget {
   final CartItem cartItem;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/models/restaurant.dart';
+import 'package:food_delivery_app/utils/my_button.dart';
+import 'package:food_delivery_app/utils/my_cart_tile.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:qasim_milk_shop/models/restaurant.dart';
-import 'package:qasim_milk_shop/utils/my_button.dart';
-import 'package:qasim_milk_shop/utils/my_cart_tile.dart';
 
 class Cart extends StatelessWidget {
   const Cart({super.key});

@@ -1,10 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/firebase_options.dart';
+import 'package:food_delivery_app/models/restaurant.dart';
+import 'package:food_delivery_app/utils/themes/theme_provider.dart';
+import 'package:food_delivery_app/user/user_provider.dart';
+import 'package:food_delivery_app/utils/routes.dart';
 import 'package:provider/provider.dart';
-import 'package:qasim_milk_shop/firebase_options.dart';
-import 'package:qasim_milk_shop/models/restaurant.dart';
-import 'package:qasim_milk_shop/themes/theme_provider.dart';
-import 'package:qasim_milk_shop/utils/routes.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -17,6 +18,7 @@ Future main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => Restaurant()),
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider(create: (context) => UserProvider()),
       ],
       child: const MyApp(),
     ),

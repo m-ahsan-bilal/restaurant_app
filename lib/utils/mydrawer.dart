@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/firebase_services/auth/auth_services.dart';
+import 'package:food_delivery_app/utils/mydrawertile.dart';
 import 'package:go_router/go_router.dart';
-import 'package:qasim_milk_shop/firebase_services/auth/auth_services.dart';
-
-import 'package:qasim_milk_shop/utils/Mydrawertile.dart';
 
 class Mydrawer extends StatelessWidget {
   const Mydrawer({super.key});

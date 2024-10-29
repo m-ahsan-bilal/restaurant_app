@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/models/food.dart';
+import 'package:food_delivery_app/models/restaurant.dart';
+import 'package:food_delivery_app/utils/my_button.dart';
 import 'package:provider/provider.dart';
-import 'package:qasim_milk_shop/models/food.dart';
-import 'package:qasim_milk_shop/models/restaurant.dart';
-import 'package:qasim_milk_shop/utils/my_button.dart';
 
 class FoodPage extends StatefulWidget {
   final Food food;

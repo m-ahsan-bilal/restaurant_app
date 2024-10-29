@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/user/user_provider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class MySilverAppBar extends StatelessWidget {
   final Widget child;
@@ -8,6 +10,7 @@ class MySilverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? userName = Provider.of<UserProvider>(context).userName;
     return SliverAppBar(
       expandedHeight: 350,
       collapsedHeight: 120,
@@ -22,9 +25,7 @@ class MySilverAppBar extends StatelessWidget {
       ],
       backgroundColor: Theme.of(context).colorScheme.surface,
       foregroundColor: Theme.of(context).colorScheme.inversePrimary,
-      title: const Text(
-        "Sunset Dinner",
-      ),
+      title: Text(userName ?? ""),
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(
           padding: const EdgeInsets.only(bottom: 50.0),

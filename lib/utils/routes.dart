@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/admin/admin_dashboard.dart';
+import 'package:food_delivery_app/admin/receipt_details.dart';
+import 'package:food_delivery_app/admin/view_orders.dart';
+import 'package:food_delivery_app/firebase_services/auth/login_or_register.dart';
+import 'package:food_delivery_app/landing/splash.dart';
+import 'package:food_delivery_app/log_register/loginuser.dart';
+import 'package:food_delivery_app/log_register/register_user.dart';
+import 'package:food_delivery_app/pages/cart.dart';
+import 'package:food_delivery_app/pages/dashboard.dart';
+import 'package:food_delivery_app/pages/delivery_progress_page.dart';
+import 'package:food_delivery_app/pages/payment_page.dart';
+import 'package:food_delivery_app/pages/settings.dart';
+import 'package:food_delivery_app/pages/user_profile.dart';
 
 import 'package:go_router/go_router.dart';
-import 'package:qasim_milk_shop/firebase_services/auth/login_or_register.dart';
-import 'package:qasim_milk_shop/landing/splash.dart';
-import 'package:qasim_milk_shop/log_register/loginuser.dart';
-import 'package:qasim_milk_shop/log_register/register_user.dart';
-import 'package:qasim_milk_shop/pages/cart.dart';
-import 'package:qasim_milk_shop/pages/dashboard.dart';
-import 'package:qasim_milk_shop/pages/delivery_progress_page.dart';
-import 'package:qasim_milk_shop/pages/payment_page.dart';
-import 'package:qasim_milk_shop/pages/settings.dart';
-import 'package:qasim_milk_shop/pages/user_profile.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -39,6 +42,12 @@ List<RouteBase> appRoutesList = [
     path: '/home_dash',
     name: "/home_dash",
     builder: (BuildContext context, GoRouterState state) => const HomeDash(),
+  ),
+  GoRoute(
+    path: '/admin_dashboard',
+    name: "//admin_dashboard",
+    builder: (BuildContext context, GoRouterState state) =>
+        const AdminDashboard(),
   ),
   GoRoute(
     path: '/cart',
@@ -85,5 +94,21 @@ List<RouteBase> appRoutesList = [
     name: "delivery_progress_page",
     builder: (BuildContext context, GoRouterState state) =>
         const DeliveryProgressPage(),
+  ),
+  GoRoute(
+    path: '/view_orders',
+    name: "view_orders",
+    builder: (BuildContext context, GoRouterState state) => const ViewOrders(),
+  ),
+  GoRoute(
+    path: '/receipt_details',
+    name: "receipt_details",
+    builder: (BuildContext context, GoRouterState state) {
+      // Retrieve the orderData from the state
+      final orderData = state.extra as Map<String, dynamic>?;
+
+      // Pass the orderData to the ReceiptDetails widget
+      return ReceiptDetails(orderData: orderData!);
+    },
   ),
 ];

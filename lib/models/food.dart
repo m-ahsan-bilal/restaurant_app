@@ -2,11 +2,11 @@
 // ignore_for_file: constant_identifier_names
 
 class Food {
-  final String name; // Pure milk
-  final String description; // Pure organic milk
-  final String imagePath; // assstes/images
-  final double price; //. 270 rupees
-  final FoodCategory category; // milk
+  final String name; // cheese burger
+  final String description; //  burgers with chheese
+  final String imagePath; // assstes/images/
+  final double price; //. 1000 rupees
+  final FoodCategory category; // burgers
 // add on items list
   List<Addon> availableAddons; // []
   Food(
@@ -20,10 +20,10 @@ class Food {
 
 // food category enum
 enum FoodCategory {
-  Milk, // [ "fresh milk ", "pure fresh milk",]
-  Sides, // ["dahi bhallay"]
-  Desserts, // ["ras malai", " khoya", "barfi",]
-  Drinks, // [ meetha dhoodh, faluda , rabri dhoodh]
+  Burgers, // ["Beef Burger", "Chicken Burger", "Veggie Burger"]
+  Sides, // ["French Fries", "Onion Rings", "Mozzarella Sticks"]
+  Desserts, // ["Chocolate Sundae", "Cheesecake", "Brownie"]
+  Drinks, // ["Soda", "Milkshake", "Iced Coffee"]
 }
 
 // food addons model

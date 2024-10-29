@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:qasim_milk_shop/firebase_services/auth/auth_gate.dart';
-
-import 'package:qasim_milk_shop/firebase_services/auth/login_or_register.dart';
 import 'dart:async';
+
+import 'package:food_delivery_app/firebase_services/auth/auth_gate.dart';
+import 'package:food_delivery_app/log_register/loginuser.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,6 +15,12 @@ class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
+  bool showLoginPage = true;
+  // void togglePages() {
+  //   setState(() {
+  //     showLoginPage = !showLoginPage;
+  //   });
+  // }
 
   @override
   void initState() {
@@ -41,8 +47,9 @@ class _SplashScreenState extends State<SplashScreen>
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const AuthGate()),
+        // MaterialPageRoute(
+        //     builder: (context) => LoginUser(onTap: togglePages))
       );
-      // Navigator.of(context).pushReplacementNamed('/home_dash');
     });
   }
 
@@ -60,7 +67,7 @@ class _SplashScreenState extends State<SplashScreen>
         children: [
           // Background image
           Image.asset(
-            'assets/images/dairy_milk2.jpg',
+            'assets/images/splash1.jpeg',
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,
@@ -70,23 +77,23 @@ class _SplashScreenState extends State<SplashScreen>
             opacity: _fadeAnimation,
             child: const Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: 20),
+                  SizedBox(height: 200),
                   // App Name or slogan
                   Text(
-                    'Qasim Milk Shop',
+                    'R E S T A U R A N T  A P P',
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      // color: Theme.of(context).colorScehem.
+                      color: Colors.white,
                     ),
                   ),
+
                   Text(
-                    "FRESH, PURE, EVERYDAY!",
+                    "Developed by: M.Ahsan Bilal",
                     style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 15,
                         fontWeight: FontWeight.bold),
                   ),

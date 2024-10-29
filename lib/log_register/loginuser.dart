@@ -231,10 +231,10 @@
 //   }
 // }
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/firebase_services/auth/auth_services.dart';
+import 'package:food_delivery_app/utils/my_button.dart';
+import 'package:food_delivery_app/utils/my_text_field.dart';
 import 'package:go_router/go_router.dart';
-import 'package:qasim_milk_shop/firebase_services/auth/auth_services.dart';
-import 'package:qasim_milk_shop/utils/my_button.dart';
-import 'package:qasim_milk_shop/utils/my_text_field.dart';
 
 class LoginUser extends StatefulWidget {
   final void Function()? onTap;
@@ -294,6 +294,8 @@ class _LoginUserState extends State<LoginUser>
   final passwordController = TextEditingController();
 
   // Login method
+
+  // Login method
   Future<void> login() async {
     final _authService = AuthService();
 
@@ -302,12 +304,29 @@ class _LoginUserState extends State<LoginUser>
     });
 
     try {
+      // Sign in the user
       await _authService.signInWithEmailPassword(
         emailController.text.trim(),
         passwordController.text.trim(),
       );
-      context.go('/home_dash');
+
+      // Get the currently logged-in user's email
+      final currentUser = _authService.getCurrentUser();
+
+      if (currentUser != null) {
+        String email = currentUser.email ?? '';
+
+        // Check if the email is the admin's email
+        if (email == "admin@qasimmilkshop.com") {
+          // Navigate to the AdminDashboard
+          context.go('/admin_dashboard');
+        } else {
+          // Navigate to the regular user dashboard
+          context.go('/home_dash');
+        }
+      }
     } catch (e) {
+      // Show error dialog if login fails
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -320,6 +339,33 @@ class _LoginUserState extends State<LoginUser>
       });
     }
   }
+
+  // Future<void> login() async {
+  //   final _authService = AuthService();
+
+  //   setState(() {
+  //     _isSigningIn = true; // Show "Signing In..." text
+  //   });
+
+  //   try {
+  //     await _authService.signInWithEmailPassword(
+  //       emailController.text.trim(),
+  //       passwordController.text.trim(),
+  //     );
+  //     context.go('/home_dash');
+  //   } catch (e) {
+  //     showDialog(
+  //       context: context,
+  //       builder: (context) => AlertDialog(
+  //         title: Text(e.toString()),
+  //       ),
+  //     );
+  //   } finally {
+  //     setState(() {
+  //       _isSigningIn = false; // Revert to original text after login attempt
+  //     });
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -344,27 +390,27 @@ class _LoginUserState extends State<LoginUser>
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Image.asset(
-                    "assets/images/dairy_milk1.jpg",
+                    "assets/images/mainpage.jpeg",
                     width: double.infinity,
                   ),
                   const SizedBox(height: 30),
                   Text(
-                    "Q A S I M  M I L K  S H O P",
+                    "R E S T A U R A N T  A P P",
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.inversePrimary,
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  Text(
-                    "FRESH, PURE, EVERYDAY!",
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.inversePrimary,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                  // const SizedBox(height: 20),
+                  // Text(
+                  //   "FRESH, PURE, EVERYDAY!",
+                  //   style: TextStyle(
+                  //     color: Theme.of(context).colorScheme.inversePrimary,
+                  //     fontSize: 20,
+                  //     fontWeight: FontWeight.w600,
+                  //   ),
+                  // ),
                   const SizedBox(height: 20),
                   Text(
                     "Welcome back, You have been missed!",

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qasim_milk_shop/models/food.dart';
+import 'package:food_delivery_app/models/food.dart';
 
 class MyQuantitySelector extends StatelessWidget {
   final int quantity;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qasim_milk_shop/themes/theme_light.dart';
-import 'package:qasim_milk_shop/themes/themes_dark.dart';
+import 'package:food_delivery_app/utils/themes/theme_light.dart';
+import 'package:food_delivery_app/utils/themes/themes_dark.dart';
 
 class ThemeProvider extends ChangeNotifier {
   ThemeData _themeData = lightMode;

@@ -1,137 +1,201 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/models/cart_item.dart';
+import 'package:food_delivery_app/models/food.dart';
 import 'package:intl/intl.dart';
-import 'package:qasim_milk_shop/models/cart_item.dart';
-import 'package:qasim_milk_shop/models/food.dart';
 
 class Restaurant extends ChangeNotifier {
   // list of food menu
+
+// GETTERS
+
   final List<Food> _menu = [
-    // Milk Category
+    // Burgers Category
     Food(
-      category: FoodCategory.Milk,
-      name: "Pure Milk",
-      description: "Pure organic milk",
-      imagePath: "assets/images/milk_1.png",
-      price: 270,
+      category: FoodCategory.Burgers,
+      name: "Classic Beef Burger",
+      description: "Juicy beef patty with lettuce, tomato, and cheese",
+      imagePath: "assets/images/beef burger.jpeg",
+      price: 850,
       availableAddons: [
-        Addon(name: "Fresh Milk", price: 200),
-        Addon(name: "Dahi Bhallay", price: 150),
-        Addon(name: "Ras Malai", price: 180),
+        Addon(name: "Extra Cheese", price: 50),
+        Addon(name: "Bacon", price: 100),
       ],
     ),
-
     Food(
-      category: FoodCategory.Milk,
-      name: "Fresh Milk",
-      description: "Good quality fresh milk",
-      imagePath: "assets/images/milk_2.png",
-      price: 200,
+      category: FoodCategory.Burgers,
+      name: "Crispy Chicken Burger",
+      description: "Golden fried chicken with spicy mayo and pickles",
+      imagePath: "assets/images/chicken burger.jpeg",
+      price: 750,
       availableAddons: [
-        Addon(name: "Barfi", price: 100),
-        Addon(name: "Ras Malai", price: 180),
+        Addon(name: "Extra Sauce", price: 30),
+        Addon(name: "Lettuce", price: 20),
+      ],
+    ),
+    Food(
+      category: FoodCategory.Burgers,
+      name: "Veggie Burger",
+      description: "Grilled veggie patty with lettuce, tomato, and avocado",
+      imagePath: "assets/images/veggie burger.jpeg",
+      price: 700,
+      availableAddons: [
+        Addon(name: "Extra Avocado", price: 50),
+        Addon(name: "Vegan Cheese", price: 40),
+      ],
+    ),
+    Food(
+      category: FoodCategory.Burgers,
+      name: "Double Cheese Burger",
+      description:
+          "Two beef patties, double cheese, and all the classic toppings",
+      imagePath: "assets/images/double cheese burger.jpeg",
+      price: 1000,
+      availableAddons: [
+        Addon(name: "Onion Rings", price: 60),
+        Addon(name: "Extra Patty", price: 200),
       ],
     ),
 
     // Sides Category
     Food(
       category: FoodCategory.Sides,
-      name: "Dahi Bhallay",
-      description: "Special fresh dahi bhallay full of spice",
-      imagePath: "assets/images/dahi_bhallay.jpg",
-      price: 150,
+      name: "French Fries",
+      description: "Crispy golden fries with a hint of salt",
+      imagePath: "assets/images/French Fries.jpeg",
+      price: 250,
       availableAddons: [
-        Addon(name: "Barfi", price: 120),
-        Addon(name: "faluda", price: 150),
+        Addon(name: "Cheese Sauce", price: 50),
+        Addon(name: "Chili Powder", price: 20),
+      ],
+    ),
+    Food(
+      category: FoodCategory.Sides,
+      name: "Onion Rings",
+      description: "Crispy fried onion rings with a side of ranch",
+      imagePath: "assets/images/Onion Rings.jpeg",
+      price: 200,
+      availableAddons: [
+        Addon(name: "Spicy Sauce", price: 30),
+        Addon(name: "Extra Ranch", price: 20),
+      ],
+    ),
+    Food(
+      category: FoodCategory.Sides,
+      name: "Mozzarella Sticks",
+      description: "Crispy sticks filled with melted mozzarella cheese",
+      imagePath: "assets/images/Mozzarella Sticks.jpeg",
+      price: 300,
+      availableAddons: [
+        Addon(name: "Marinara Sauce", price: 40),
+        Addon(name: "Ranch", price: 30),
+      ],
+    ),
+    Food(
+      category: FoodCategory.Sides,
+      name: "Chicken Nuggets",
+      description: "Crispy, golden nuggets served with dipping sauce",
+      imagePath: "assets/images/Chicken Nuggets.jpeg",
+      price: 350,
+      availableAddons: [
+        Addon(name: "BBQ Sauce", price: 30),
+        Addon(name: "Honey Mustard", price: 30),
       ],
     ),
 
     // Desserts Category
     Food(
       category: FoodCategory.Desserts,
-      name: "Ras Malai",
-      description: "Creamy and delicious Ras Malai",
-      imagePath: "assets/images/ras_malai.jpg",
-      price: 180,
+      name: "Chocolate Sundae",
+      description: "Rich chocolate ice cream topped with fudge",
+      imagePath: "assets/images/Chocolate Sundae.jpeg",
+      price: 400,
       availableAddons: [
-        Addon(name: "Barfi", price: 120),
-        Addon(name: "Faluda", price: 220),
-      ],
-    ),
-
-    Food(
-      category: FoodCategory.Desserts,
-      name: "Khoya",
-      description: "Rich and sweet khoya",
-      imagePath: "assets/images/khoya2.jpg",
-      price: 150,
-      availableAddons: [
-        Addon(name: "Dahi Bhallay", price: 150),
-        Addon(name: "Meetha Dhoodh", price: 200),
-      ],
-    ),
-
-    Food(
-      category: FoodCategory.Desserts,
-      name: "Barfi",
-      description: "Delicious traditional Barfi",
-      imagePath: "assets/images/barfi1.jpg",
-      price: 120,
-      availableAddons: [
-        Addon(name: "Ras Malai", price: 180),
-        Addon(name: "Khoya", price: 150),
+        Addon(name: "Extra Fudge", price: 50),
+        Addon(name: "Whipped Cream", price: 30),
       ],
     ),
     Food(
       category: FoodCategory.Desserts,
-      name: "Meetha Dahi",
-      description: "Delicious traditional and fresh yogurt",
-      imagePath: "assets/images/dahi.jpg",
-      price: 230,
+      name: "Cheesecake",
+      description: "Creamy cheesecake with a graham cracker crust",
+      imagePath: "assets/images/Cheesecake.jpeg",
+      price: 500,
       availableAddons: [
-        Addon(name: "Ras Malai", price: 180),
-        Addon(name: "Khoya", price: 150),
+        Addon(name: "Berry Sauce", price: 60),
+        Addon(name: "Fresh Strawberries", price: 80),
+      ],
+    ),
+    Food(
+      category: FoodCategory.Desserts,
+      name: "Brownie",
+      description: "Warm, fudgy brownie with chocolate chunks",
+      imagePath: "assets/images/Brownie.jpeg",
+      price: 300,
+      availableAddons: [
+        Addon(name: "Vanilla Ice Cream", price: 100),
+        Addon(name: "Caramel Sauce", price: 40),
+      ],
+    ),
+    Food(
+      category: FoodCategory.Desserts,
+      name: "Apple Pie",
+      description: "Classic apple pie with a flaky crust",
+      imagePath: "assets/images/Apple Pie.jpeg",
+      price: 350,
+      availableAddons: [
+        Addon(name: "Vanilla Ice Cream", price: 100),
+        Addon(name: "Whipped Cream", price: 50),
       ],
     ),
 
     // Drinks Category
     Food(
       category: FoodCategory.Drinks,
-      name: "Meetha Dhoodh",
-      description: "Sweetened milk with a hint of cardamom",
-      imagePath: "assets/images/meetha_dhoodh.png",
-      price: 200,
-      availableAddons: [
-        Addon(name: "Faluda", price: 220),
-        Addon(name: "Pure Milk", price: 270),
-      ],
-    ),
-
-    Food(
-      category: FoodCategory.Drinks,
-      name: "Raabri Wala Dhoodh",
-      description: "Refreshing Faluda with vermicelli and jelly",
-      imagePath: "assets/images/falooda1.jpg",
+      name: "Soda",
+      description: "Chilled soda available in multiple flavors",
+      imagePath: "assets/images/soda.jpeg",
       price: 150,
       availableAddons: [
-        Addon(name: "Meetha Dhoodh", price: 200),
-        Addon(name: "Fresh Milk", price: 200),
+        Addon(name: "Extra Ice", price: 10),
+        Addon(name: "Lemon Wedge", price: 15),
       ],
     ),
     Food(
       category: FoodCategory.Drinks,
-      name: "Faluda",
-      description: "Refreshing Faluda with vermicelli and jelly",
-      imagePath: "assets/images/falooda1.jpg",
+      name: "Milkshake",
+      description:
+          "Creamy milkshake available in chocolate, vanilla, or strawberry",
+      imagePath: "assets/images/Milkshake.jpeg",
+      price: 300,
+      availableAddons: [
+        Addon(name: "Extra Scoop of Ice Cream", price: 70),
+        Addon(name: "Whipped Cream", price: 50),
+      ],
+    ),
+    Food(
+      category: FoodCategory.Drinks,
+      name: "Iced Coffee",
+      description: "Chilled coffee with a splash of milk",
+      imagePath: "assets/images/Iced Coffee.jpeg",
+      price: 250,
+      availableAddons: [
+        Addon(name: "Caramel Syrup", price: 30),
+        Addon(name: "Extra Shot", price: 50),
+      ],
+    ),
+    Food(
+      category: FoodCategory.Drinks,
+      name: "Lemonade",
+      description: "Refreshing lemonade made with fresh lemons",
+      imagePath: "assets/images/Lemonade.jpeg",
       price: 200,
       availableAddons: [
-        Addon(name: "Meetha Dhoodh", price: 150),
-        Addon(name: "Fresh Milk", price: 200),
+        Addon(name: "Mint Leaves", price: 20),
+        Addon(name: "Extra Lemon", price: 15),
       ],
     ),
   ];
-
-// GETTERS
 
   List<Food> get menu => _menu;
   List<CartItem> get cart => _cart;

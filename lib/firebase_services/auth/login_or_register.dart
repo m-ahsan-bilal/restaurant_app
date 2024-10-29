@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qasim_milk_shop/log_register/loginuser.dart';
-import 'package:qasim_milk_shop/log_register/register_user.dart';
+import 'package:food_delivery_app/log_register/loginuser.dart';
+import 'package:food_delivery_app/log_register/register_user.dart';
 
 class LoginOrRegister extends StatefulWidget {
   const LoginOrRegister({super.key});
