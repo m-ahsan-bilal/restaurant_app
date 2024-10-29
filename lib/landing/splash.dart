@@ -84,7 +84,7 @@ class _SplashScreenState extends State<SplashScreen>
                     ),
                   ),
                   Text(
-                    "FRESH, PURE , EVERYDAY!",
+                    "FRESH, PURE, EVERYDAY!",
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 15,
