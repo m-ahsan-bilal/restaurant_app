@@ -110,13 +110,13 @@ class Mydrawer extends StatelessWidget {
           ),
 
           // Show user ID in this tile
-          Consumer<UserProvider>(builder: (context, userProvider, child) {
-            final userID = context.read<UserProvider>().getUserId();
-            return MyDrawerTile(
-              text: "User ID: ${userID ?? 'Not signed in'}",
-              icon: Icons.account_circle,
-            );
-          }),
+          // Consumer<UserProvider>(builder: (context, userProvider, child) {
+          //   final userID = context.read<UserProvider>().getUserId();
+          //   return MyDrawerTile(
+          //     text: "User ID: ${userID ?? 'Not signed in'}",
+          //     icon: Icons.account_circle,
+          //   );
+          // }),
 
           MyDrawerTile(
             text: "H O M E",
@@ -133,7 +133,7 @@ class Mydrawer extends StatelessWidget {
               context.go('/settings');
             },
           ),
-          const Spacer(),
+          // const Spacer(),
           MyDrawerTile(
             text: "L O G  O U T",
             icon: Icons.logout_outlined,

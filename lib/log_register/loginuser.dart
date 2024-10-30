@@ -340,33 +340,6 @@ class _LoginUserState extends State<LoginUser>
     }
   }
 
-  // Future<void> login() async {
-  //   final _authService = AuthService();
-
-  //   setState(() {
-  //     _isSigningIn = true; // Show "Signing In..." text
-  //   });
-
-  //   try {
-  //     await _authService.signInWithEmailPassword(
-  //       emailController.text.trim(),
-  //       passwordController.text.trim(),
-  //     );
-  //     context.go('/home_dash');
-  //   } catch (e) {
-  //     showDialog(
-  //       context: context,
-  //       builder: (context) => AlertDialog(
-  //         title: Text(e.toString()),
-  //       ),
-  //     );
-  //   } finally {
-  //     setState(() {
-  //       _isSigningIn = false; // Revert to original text after login attempt
-  //     });
-  //   }
-  // }
-
   @override
   void dispose() {
     emailController.dispose();
@@ -464,14 +437,14 @@ class _LoginUserState extends State<LoginUser>
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Text(
-                    'Forgot Password?',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.inversePrimary,
-                    ),
-                    textAlign: TextAlign.start,
-                  ),
-                  const SizedBox(height: 30),
+                  // Text(
+                  //   'Forgot Password?',
+                  //   style: TextStyle(
+                  //     color: Theme.of(context).colorScheme.inversePrimary,
+                  //   ),
+                  //   textAlign: TextAlign.start,
+                  // ),
+                  // const SizedBox(height: 30),
                   MyButton(
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
@@ -482,6 +455,10 @@ class _LoginUserState extends State<LoginUser>
                         ? "Signing In..."
                         : "Sign In", // Change text based on login state
                   ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  // Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

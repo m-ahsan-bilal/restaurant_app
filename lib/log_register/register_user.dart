@@ -524,32 +524,32 @@ class _RegisterUserState extends State<RegisterUser> {
               ),
 
               // Already Have Account
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Already Have An Account?',
+              SizedBox(
+                height: 40,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Already Have An Account?',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  InkWell(
+                    onTap: () {
+                      context.go('/login_user');
+                    },
+                    child: Text(
+                      'Login Now!',
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.inversePrimary,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(width: 4),
-                    InkWell(
-                      onTap: () {
-                        context.go('/login_user');
-                      },
-                      child: Text(
-                        'Login Now!',
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.inversePrimary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               )
             ],
           ),
