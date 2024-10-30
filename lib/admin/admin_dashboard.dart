@@ -140,11 +140,15 @@ class _AdminDashboardState extends State<AdminDashboard> {
   }
 
   Future<void> _confirmLogout() async {
+    final colorText = Theme.of(context).colorScheme.inversePrimary;
     final shouldLogout = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Logout'),
-        content: const Text('Are you sure you want to logout?'),
+        content: Text(
+          'Are you sure you want to logout?',
+          style: TextStyle(color: colorText),
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),

@@ -1,14 +1,43 @@
 import 'package:flutter/material.dart';
 
-class MyDescriptionBox extends StatelessWidget {
+class MyDescriptionBox extends StatefulWidget {
   const MyDescriptionBox({super.key});
+
+  @override
+  State<MyDescriptionBox> createState() => _MyDescriptionBoxState();
+}
+
+class _MyDescriptionBoxState extends State<MyDescriptionBox>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _opacityAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    )..repeat(reverse: true); // Repeats animation to create a blinking effect
+
+    _opacityAnimation =
+        Tween<double>(begin: 1.0, end: 0.0).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     var myPrimaryTextStyle =
         TextStyle(color: Theme.of(context).colorScheme.inversePrimary);
-    var mySecondaryTextStyle =
-        TextStyle(color: Theme.of(context).colorScheme.primary);
+    var mySecondaryTextStyle = TextStyle(
+        color: Theme.of(context).colorScheme.primary,
+        fontWeight: FontWeight.bold);
+
     return Container(
       decoration: BoxDecoration(
           border: Border.all(color: Theme.of(context).colorScheme.secondary),
@@ -18,17 +47,18 @@ class MyDescriptionBox extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // delivery  fee
           Column(
             children: [
               Text(
                 "Delivery Fee",
                 style: mySecondaryTextStyle,
               ),
-              Text(
-                // "\$0.99",
-                "Free",
-                style: myPrimaryTextStyle,
+              FadeTransition(
+                opacity: _opacityAnimation,
+                child: Text(
+                  "Free",
+                  style: myPrimaryTextStyle,
+                ),
               ),
             ],
           ),
@@ -43,7 +73,7 @@ class MyDescriptionBox extends StatelessWidget {
                 style: myPrimaryTextStyle,
               ),
             ],
-          )
+          ),
         ],
       ),
     );

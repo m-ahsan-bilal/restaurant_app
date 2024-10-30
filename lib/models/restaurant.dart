@@ -263,7 +263,7 @@ class Restaurant extends ChangeNotifier {
     }
     return total;
   }
-  // get total number of titems in the cart
+  // get total number of items in the cart
 
   int getTotalItemCount() {
     int totalItemCount = 0;

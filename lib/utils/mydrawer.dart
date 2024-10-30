@@ -18,13 +18,14 @@ class Mydrawer extends StatelessWidget {
         children: [
           // app logo
           Padding(
-            padding: const EdgeInsets.only(top: 100),
-            child: Icon(
-              Icons.lock_open,
-              size: 80,
-              color: Theme.of(context).colorScheme.inversePrimary,
-            ),
-          ),
+              padding: const EdgeInsets.only(top: 100),
+              child: Image.asset('assets/icons/foricon-6.png')
+              //  Icon(
+              //   Icons.lock_open,
+              //   size: 80,
+              //   color: Theme.of(context).colorScheme.inversePrimary,
+              // ),
+              ),
           Padding(
             padding: const EdgeInsets.all(25.0),
             child: Divider(

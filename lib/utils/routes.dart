@@ -52,7 +52,7 @@ List<RouteBase> appRoutesList = [
   GoRoute(
     path: '/cart',
     name: "cart",
-    builder: (BuildContext context, GoRouterState state) => const Cart(),
+    builder: (BuildContext context, GoRouterState state) => Cart(),
   ),
   GoRoute(
     path: '/user_view',

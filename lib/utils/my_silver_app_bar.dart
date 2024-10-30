@@ -18,14 +18,16 @@ class MySilverAppBar extends StatelessWidget {
       pinned: true,
       actions: [
         IconButton(
-            onPressed: () {
-              context.go('/cart');
-            },
-            icon: const Icon(Icons.shopping_cart))
+          onPressed: () {
+            context.go('/cart');
+          },
+          icon: const Icon(Icons.shopping_cart),
+        )
       ],
       backgroundColor: Theme.of(context).colorScheme.surface,
       foregroundColor: Theme.of(context).colorScheme.inversePrimary,
-      title: Text(userName ?? ""),
+      title: Text(
+          "Hi, ${userName ?? ''}"), // Display "Hi, [username]" or just "Hi"
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(
           padding: const EdgeInsets.only(bottom: 50.0),
