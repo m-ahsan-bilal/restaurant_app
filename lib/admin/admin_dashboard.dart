@@ -193,21 +193,36 @@ class _AdminDashboardState extends State<AdminDashboard> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: GridView.count(
-          crossAxisCount: 1,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
+          crossAxisCount: 2,
+          crossAxisSpacing: 1,
+          mainAxisSpacing: 1,
           children: [
             _buildDashboardCard(
               context,
               icon: Icons.delivery_dining,
               title: 'Manage Orders',
-              subtitle: 'View orders and track orders',
+              subtitle: 'track orders',
               color: Colors.orangeAccent,
               onTap: () {
                 context.go('/view_orders'); // Navigate to 'View Orders' screen
                 debugPrint('Navigating to orders screen');
               },
             ),
+            SizedBox(
+              height: 10,
+            ),
+            _buildDashboardCard(
+              context,
+              icon: Icons.groups_2_outlined,
+              title: 'Manage Users',
+              subtitle: 'View users',
+              color: Colors.orangeAccent,
+              onTap: () {
+                context.go('/view_users'); // Navigate to 'View Orders' screen
+                debugPrint('Navigating to users view  screen');
+              },
+            ),
+
             // Additional cards can be added here
           ],
         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery_app/admin/admin_dashboard.dart';
 import 'package:food_delivery_app/admin/receipt_details.dart';
 import 'package:food_delivery_app/admin/view_orders.dart';
+import 'package:food_delivery_app/admin/view_users.dart';
 import 'package:food_delivery_app/firebase_services/auth/login_or_register.dart';
 import 'package:food_delivery_app/landing/splash.dart';
 import 'package:food_delivery_app/log_register/loginuser.dart';
@@ -98,17 +99,22 @@ List<RouteBase> appRoutesList = [
   GoRoute(
     path: '/view_orders',
     name: "view_orders",
-    builder: (BuildContext context, GoRouterState state) => const ViewOrders(),
+    builder: (BuildContext context, GoRouterState state) => ViewOrders(),
   ),
   GoRoute(
-    path: '/receipt_details',
-    name: "receipt_details",
-    builder: (BuildContext context, GoRouterState state) {
-      // Retrieve the orderData from the state
-      final orderData = state.extra as Map<String, dynamic>?;
-
-      // Pass the orderData to the ReceiptDetails widget
-      return ReceiptDetails(orderData: orderData!);
-    },
+    path: '/view_users',
+    name: "view_users",
+    builder: (BuildContext context, GoRouterState state) => AdminScreen(),
   ),
+  // GoRoute(
+  //   path: '/receipt_details',
+  //   name: "receipt_details",
+  //   builder: (BuildContext context, GoRouterState state) {
+  //     // Retrieve the orderData from the state
+  //     final orderData = state.extra as Map<String, dynamic>?;
+
+  //     // Pass the orderData to the ReceiptDetails widget
+  //     return ReceiptDetails(orderData: orderData!);
+  //   },
+  // ),
 ];

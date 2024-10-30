@@ -1,8 +1,8 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:flutter/material.dart';
+// import 'package:food_delivery_app/admin/get_firestore.dart';
 // import 'package:go_router/go_router.dart';
 // import 'package:intl/intl.dart'; // Import intl package for date formatting
-// import 'package:qasim_milk_shop/admin/get_firestore.dart';
 
 // class ViewOrders extends StatefulWidget {
 //   const ViewOrders({super.key});
@@ -43,6 +43,7 @@
 //       ),
 //       body: StreamBuilder<QuerySnapshot>(
 //         stream: _orderService.getOrdersStream(),
+//         // stream: _orderService.getOrdersWithUserDataStream(),
 //         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
 //           if (snapshot.connectionState == ConnectionState.waiting) {
 //             return const Center(child: CircularProgressIndicator());
@@ -124,7 +125,8 @@ class ViewOrders extends StatefulWidget {
 class _ViewOrdersState extends State<ViewOrders> {
   final OrderService _orderService = OrderService();
 
-  String formatDate(Timestamp timestamp) {
+  String formatDate(Timestamp? timestamp) {
+    if (timestamp == null) return 'N/A';
     final date = timestamp.toDate();
     final DateFormat formatter = DateFormat('dd MMM yyyy, hh:mm a');
     return formatter.format(date);
@@ -152,8 +154,7 @@ class _ViewOrdersState extends State<ViewOrders> {
         centerTitle: true,
       ),
       body: StreamBuilder<List<Map<String, dynamic>>>(
-        stream: _orderService
-            .getOrdersWithUserDataStream(), // Update to the new method
+        stream: _orderService.getOrdersWithUserDataStream(),
         builder: (BuildContext context,
             AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -162,22 +163,21 @@ class _ViewOrdersState extends State<ViewOrders> {
           if (snapshot.hasError) {
             return const Center(child: Text('Error fetching orders'));
           }
-
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Center(child: Text('No orders found'));
           }
 
-          // Get the list of orders
-          List<Map<String, dynamic>> ordersWithUsers = snapshot.data!;
+          // Orders are already in newest-to-oldest order due to 'orderBy' in query
+          List<Map<String, dynamic>> orders = snapshot.data!;
 
           return ListView.builder(
             padding: const EdgeInsets.all(8.0),
-            itemCount: ordersWithUsers.length,
+            itemCount: orders.length,
             itemBuilder: (context, index) {
-              var orderData = ordersWithUsers[index]['order'];
-              var userData = ordersWithUsers[index]['user'];
+              var orderData = orders[index];
 
-              int orderNumber = ordersWithUsers.length - index;
+              // Display newest order as Order #1
+              int orderNumber = orders.length - index;
 
               return Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
@@ -190,21 +190,30 @@ class _ViewOrdersState extends State<ViewOrders> {
                   child: ListTile(
                     contentPadding: const EdgeInsets.all(16.0),
                     title: Text(
-                      'Order #$orderNumber: ${orderData['order'] ?? 'N/A'}',
+                      'Order #$orderNumber',
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
                     ),
-                    subtitle: Text(
-                      'User: ${userData?['name'] ?? 'N/A'}, Date: ${formatDate(orderData['orderDate'])}',
-                      style: const TextStyle(
-                        color: Colors.black54,
-                      ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Date: ${formatDate(orderData['data'])}'),
+                        Text('User Name: ${orderData['userName'] ?? 'N/A'}'),
+                        Text('Phone: ${orderData['phoneNumber'] ?? 'N/A'}'),
+                        Text('Location: ${orderData['location'] ?? 'N/A'}'),
+                        const SizedBox(height: 8.0),
+                        Text(
+                          'Order Details: ${orderData['order'] ?? 'N/A'}',
+                          style: const TextStyle(
+                            color: Colors.black54,
+                          ),
+                        ),
+                      ],
                     ),
                     onTap: () {
-                      context.go('/receipt_details',
-                          extra: orderData); // Navigate to receipt details
+                      // Handle order details navigation if needed
                     },
                   ),
                 ),

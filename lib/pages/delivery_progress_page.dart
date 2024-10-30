@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/firebase_services/database/firestore.dart';
 import 'package:food_delivery_app/models/restaurant.dart';
+import 'package:food_delivery_app/user/user_provider.dart';
 import 'package:food_delivery_app/utils/my_receipt.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +32,15 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
 
     try {
       String receipt = context.read<Restaurant>().displayCartReceipt();
-      await db.saveOrderToDatabase(receipt);
+      // Get userId from UserProvider
+      String? userId = context.read<UserProvider>().getUserId();
+
+      if (userId != null) {
+        await db.saveOrderToDatabase(
+            receipt, userId); // Pass both receipt and userId
+      } else {
+        throw Exception("User ID is not available.");
+      }
     } catch (e) {
       setState(() {
         errorMessage = "Failed to save order: $e";
@@ -42,6 +51,34 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
       });
     }
   }
+
+  // Future<void> saveOrder() async {
+  //   setState(() {
+  //     isLoading = true;
+  //     errorMessage = null; // Reset error message
+  //   });
+
+  //   try {
+  //     String receipt = context.read<Restaurant>().displayCartReceipt();
+  //     // Get userId from UserProvider
+  //     String? userId = context.read<UserProvider>().getCurrentUser()?.uid;
+
+  //     if (userId != null) {
+  //       await db.saveOrderToDatabase(
+  //           receipt, userId); // Pass both receipt and userId
+  //     } else {
+  //       throw Exception("User ID is not available.");
+  //     }
+  //   } catch (e) {
+  //     setState(() {
+  //       errorMessage = "Failed to save order: $e";
+  //     });
+  //   } finally {
+  //     setState(() {
+  //       isLoading = false;
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +94,7 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
         backgroundColor: Colors.transparent,
       ),
       body: isLoading
-          ? const Center(child: const CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
               child: Column(
                 children: [
@@ -74,65 +111,3 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
-//   // get access to database
-//   FirestoreServices db = FirestoreServices();
-//   @override
-//   void initState() {
-//     super.initState();
-
-//     // if we get to this page, get to the database
-//     String receipt = context.read<Restaurant>().displayCartReceipt();
-//     db.saveOrderToDatabase(receipt);
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         leading: IconButton(
-//           onPressed: () {
-//             context.go('/checkout');
-//           },
-//           icon: const Icon(Icons.arrow_back),
-//         ),
-//         title: const Text("Delivery In Progress..."),
-//         // backgroundColor: Theme.of(context).colorScheme.,
-//         backgroundColor: Colors.transparent,
-//       ),
-//       // bottomNavigationBar: _bottomNavigationBar(context),
-//       body: SingleChildScrollView(
-//         child: Column(
-//           children: [
-//             MyReceipt(),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-
